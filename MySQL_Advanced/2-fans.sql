@@ -1,6 +1,8 @@
--- List bands by longevity
+-- Rank country origins of bands by total fans
 
-SELECT band_name,
-       (IFNULL(split, YEAR(CURDATE())) - formed) AS longevity
+SELECT
+    origin,
+    SUM(fans) AS nb_fans
 FROM metal_bands
-ORDER BY longevity DESC;
+GROUP BY origin
+ORDER BY nb_fans DESC;
